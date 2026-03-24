@@ -2888,6 +2888,143 @@
       margin: 0;
     }
 
+    /* ============================================
+       HEXAGONAL FLIP CARDS
+    ============================================ */
+    .hexagon-flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+      gap: 120px;
+      margin-top: 32px;
+      padding: 0 16px;
+      justify-content: center;
+    }
+
+    .hexagon-flip-card {
+      perspective: 1000px;
+      width: 200px;
+      height: 220px;
+      position: relative;
+      cursor: pointer;
+      filter: drop-shadow(0 0 0px rgba(201,243,29,0));
+      transition: filter 0.4s ease;
+    }
+
+    .hexagon-flip-card:hover {
+      filter: drop-shadow(0 0 0px rgba(201,243,29,0));
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-style: preserve-3d;
+    }
+
+    .hexagon-flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    }
+
+    .flip-card-front {
+      background: linear-gradient(135deg, rgba(201,243,29,0.12) 0%, rgba(0,212,255,0.1) 100%);
+      border: 2px solid rgba(201,243,29,0.35);
+      box-shadow: 0 8px 24px rgba(201,243,29,0.08), inset 0 0 25px rgba(201,243,29,0.05);
+      padding: 16px;
+    }
+
+    .flip-card-front i {
+      font-size: 64px;
+      color: var(--accent);
+      text-shadow: 0 0 15px rgba(201,243,29,0.2);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hexagon-flip-card:hover .flip-card-front i {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    .flip-card-back {
+      background: transparent;
+      border: 2px solid rgba(0,212,255,0.2);
+      transform: rotateY(180deg);
+      padding: 14px;
+      flex-direction: column;
+      text-align: center;
+      box-shadow: inset 0 0 20px rgba(0,212,255,0.1);
+    }
+
+    .hexagon-flip-card:hover .flip-card-back {
+      box-shadow: 0 0 40px rgba(201,243,29,0.9), 0 0 80px rgba(0,212,255,0.7), inset 0 0 30px rgba(201,243,29,0.4), inset 0 0 15px rgba(0,212,255,0.2);
+      border: 2px solid rgba(201,243,29,0.8);
+      background: radial-gradient(circle at center, rgba(0,212,255,0.1) 0%, transparent 70%);
+    }
+
+    .flip-card-back-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .flip-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+      text-shadow: 0 0 10px rgba(201,243,29,0.6);
+    }
+
+    .flip-card-desc {
+      font-size: 12px;
+      color: var(--accent-2);
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 8px rgba(0,212,255,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hexagon-flip-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 160px));
+        gap: 70px;
+        padding: 0 8px;
+      }
+
+      .hexagon-flip-card {
+        width: 160px;
+        height: 190px;
+      }
+
+      .flip-card-front i {
+        font-size: 40px;
+      }
+
+      .flip-card-title {
+        font-size: 12px;
+      }
+
+      .flip-card-desc {
+        font-size: 9px;
+      }
+    }
+
     /* Credential link */
     .cert-credential-link {
       display: inline-flex;
@@ -4011,7 +4148,7 @@
         <!-- LEFT: Name (fixed) -->
         <div class="hero-left">
           <div class="hero-greeting">
-            Hey, I'm Varshitha <span class="hero-wave">&#128075;</span>
+             I'm Varshitha <span class="hero-wave"></span>
           </div>
         </div>
 
@@ -4061,7 +4198,7 @@
 
           <div class="about-text-wrapper">
             <p class="about-text" id="aboutText">
-              I'm Anipilli Varshitha, an Ethical Hacker dedicated to identifying and fortifying security vulnerabilities. With expertise in penetration testing, network security, and vulnerability assessment, I help organizations defend against cyber threats. My approach combines technical depth with ethical responsibility, focusing on protecting digital assets and ensuring secure systems that maintain user trust and data integrity.
+              I am Anipilli Varshitha, an Ethical Hacker with a passion for identifying and fortifying security vulnerabilities. With interest in penetration testing, network security, and vulnerability assessment, my aim is to help organizations fight against cyber attacks and cyber crimes. As an Ethical Hacker, my approach is to provide security solutions that focus on protecting and securing digital assets and systems for users.
             </p>
 
             <div class="about-stats">
@@ -4360,30 +4497,34 @@
           <div class="section-header">
             <div class="section-label"><i class="ri-team-line"></i> Extra Curricular Activities</div>
           </div>
-          <div class="achiev-list">
-            <div class="achiev-item">
-              <div class="achiev-icon-wrap"><i class="ri-team-line"></i></div>
-              <div class="achiev-content">
-                <div class="achiev-title-row">
-                  <span class="achiev-title">Core Team Member — Sprint Club (DSO)</span>
-                  <span class="achiev-date">Campus</span>
+          <div class="hexagon-flip-grid">
+            <!-- Activity 1: Sprint Club -->
+            <div class="hexagon-flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <i class="ri-team-line"></i>
                 </div>
-                <p class="achiev-desc">Core team member of Sprint Club under DSO, contributing to the planning and execution of multiple technical and non-technical campus events with high student engagement.</p>
+                <div class="flip-card-back">
+                  <div class="flip-card-back-content">
+                    <div class="flip-card-title">Sprint Club (DSO)</div>
+                    <div class="flip-card-desc">Core Team Member contributing to technical & non-technical events</div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            
-
-            <div class="achiev-item">
-              <div class="achiev-icon-wrap" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.25);">
-                <i class="ri-medal-line" style="color:#a855f7;"></i>
-              </div>
-              <div class="achiev-content">
-                <div class="achiev-title-row">
-                  <span class="achiev-title">Runner-Up Position — One India Event</span>
-                  <span class="achiev-date" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.3);color:#a855f7;">Achievement</span>
+            <!-- Activity 2: One India Event -->
+            <div class="hexagon-flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <i class="ri-medal-line"></i>
                 </div>
-                <p class="achiev-desc">Participated in the One India event and secured <strong style="color:#a855f7">Runner-Up position</strong>, contributing to cultural representation, teamwork coordination, and impactful event execution.</p>
+                <div class="flip-card-back">
+                  <div class="flip-card-back-content">
+                    <div class="flip-card-title">One India Event</div>
+                    <div class="flip-card-desc">Runner-Up Position • Cultural Representation & Teamwork</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
